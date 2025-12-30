@@ -1,0 +1,73 @@
+/* Mobile-specific responsive adjustments */
+
+/* Hide activity bar on very small screens */
+@media (max-width: 640px) {
+  /* Make sidebar overlay on mobile */
+  .sidebar-mobile {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 40;
+  }
+
+  /* Reduce status bar items on mobile */
+  .status-bar-mobile {
+    font-size: 10px;
+  }
+
+  /* Stack tabs vertically on very small screens */
+  .tab-bar-mobile {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tab-bar-mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Make terminal smaller on mobile */
+  .terminal-mobile {
+    min-height: 150px !important;
+  }
+
+  /* Reduce padding in content areas */
+  .content-mobile {
+    padding: 1rem !important;
+  }
+
+  /* Make extension icons smaller */
+  .extension-icon-mobile {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Adjust sidebar width */
+  .sidebar-tablet {
+    width: 200px !important;
+  }
+
+  /* Reduce font sizes slightly */
+  .content-tablet {
+    font-size: 0.9rem;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase tap targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Add active states for touch */
+  button:active,
+  a:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
