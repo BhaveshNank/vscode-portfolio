@@ -11,7 +11,8 @@ import Terminal from './components/Terminal';
 import PDFViewer from './components/PDFViewer';
 import GitHubProfile from './components/GitHubProfile';
 import { useSwipeGesture } from './hooks/useSwipeGesture';
-
+import SettingsModal from './components/SettingsModal';
+import { applyTheme, getStoredTheme, ThemeId } from './utils/themes';
 
 type SidebarView = 'explorer' | 'search' | 'extensions';
 
@@ -135,8 +136,22 @@ export default function Home() {
     'components': true
   });
   const [isResizingSidebar, setIsResizingSidebar] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<ThemeId>('dark-default');
   const resizeStartX = useRef(0);
   const resizeStartWidth = useRef(0);
+
+  // Initialize theme on mount
+  useEffect(() => {
+    const storedTheme = getStoredTheme();
+    setCurrentTheme(storedTheme);
+    applyTheme(storedTheme);
+  }, []);
+
+  const handleThemeChange = (themeId: ThemeId) => {
+    setCurrentTheme(themeId);
+    applyTheme(themeId);
+  };
 
   useSwipeGesture({
     onSwipeLeft: () => {
@@ -263,11 +278,11 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-vscode-bg text-vscode-text font-sans overflow-hidden">
+    <div className="h-screen flex flex-col font-sans overflow-hidden" style={{ backgroundColor: 'var(--color-vscode-bg)', color: 'var(--color-vscode-text)' }}>
       <div className="flex-1 flex overflow-hidden">
 
         {/* Activity Bar */}
-        <div className="w-12 bg-vscode-activityBar flex flex-col items-center py-4 border-r border-vscode-border shrink-0">
+        <div className="w-12 flex flex-col items-center py-4 border-r shrink-0" style={{ backgroundColor: 'var(--color-vscode-activity-bar)', borderColor: 'var(--color-vscode-border)' }}>
           <button
             onClick={() => handleSidebarView('explorer')}
             className={`p-2.5 rounded transition-colors mb-6 ${sidebarView === 'explorer' && sidebarOpen ? 'text-white bg-white/10' : 'text-vscode-textMuted hover:text-white hover:bg-white/10'}`}
@@ -308,7 +323,10 @@ export default function Home() {
             </svg>
           </button>
 
-          <button className="p-2.5 text-vscode-textMuted hover:text-white hover:bg-white/10 rounded transition-colors mt-auto">
+          <button 
+            onClick={() => setSettingsOpen(true)}
+            className="p-2.5 text-vscode-textMuted hover:text-white hover:bg-white/10 rounded transition-colors mt-auto"
+          >
             <Settings size={22} strokeWidth={1.5} />
           </button>
         </div>
@@ -321,7 +339,8 @@ export default function Home() {
               animate={{ width: 250, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.15, ease: 'easeInOut' }}
-              className="bg-vscode-sidebar border-r border-vscode-border overflow-hidden shrink-0"
+              className="border-r overflow-hidden shrink-0"
+              style={{ backgroundColor: 'var(--color-vscode-sidebar)', borderColor: 'var(--color-vscode-border)' }}
             >
               {/* Explorer View */}
               {sidebarView === 'explorer' && (
@@ -547,19 +566,25 @@ export default function Home() {
         {/* Editor Area */}
         <div className="flex-1 flex flex-col bg-vscode-bg min-w-0">
           {/* Tab Bar */}
-          <div className="flex bg-vscode-tabBorder border-b border-vscode-border overflow-x-auto shrink-0">
+          <div className="flex border-b overflow-x-auto shrink-0" style={{ backgroundColor: 'var(--color-vscode-tab-border)', borderColor: 'var(--color-vscode-border)' }}>
             {tabs.map(tab => (
               <div
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
                   group relative flex items-center gap-2 px-3 py-2.5 min-w-[120px] cursor-pointer
-                  border-r border-vscode-border transition-colors
+                  border-r transition-colors
                   ${activeTab === tab.id
-                    ? 'bg-vscode-bg text-white'
-                    : 'bg-vscode-tabInactive text-vscode-textMuted hover:bg-vscode-hover'
+                    ? 'text-white'
+                    : 'text-vscode-textMuted'
                   }
                 `}
+                style={{
+                  backgroundColor: activeTab === tab.id 
+                    ? 'var(--color-vscode-bg)' 
+                    : 'var(--color-vscode-tab-inactive)',
+                  borderColor: 'var(--color-vscode-border)'
+                }}
               >
                 {activeTab === tab.id && (
                   <motion.div
@@ -653,7 +678,7 @@ export default function Home() {
       </div>
 
       {/* Status Bar */}
-      <div className="flex items-center justify-between bg-vscode-statusBar text-white text-xs px-3 py-1">
+      <div className="flex items-center justify-between text-white text-xs px-3 py-1" style={{ backgroundColor: 'var(--color-vscode-status-bar)' }}>
         <div className="flex items-center gap-4">
           <button className="flex items-center gap-1 hover:bg-white/10 px-2 py-0.5 rounded">
             <GitBranch size={13} />
@@ -675,6 +700,14 @@ export default function Home() {
           <span>TypeScript JSX</span>
         </div>
       </div>
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        currentTheme={currentTheme}
+        onThemeChange={handleThemeChange}
+      />
     </div>
   );
 }

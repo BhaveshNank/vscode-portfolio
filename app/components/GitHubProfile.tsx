@@ -39,14 +39,29 @@ export default function GitHubProfile() {
         // Fetch user data
         const userResponse = await fetch('https://api.github.com/users/BhaveshNank');
         const userData = await userResponse.json();
+        console.log('User data fetched:', userData.login, 'public_repos:', userData.public_repos);
         setUser(userData);
 
-        // Fetch repositories (all of them, sorted by updated date to get most recent)
-        const reposResponse = await fetch('https://api.github.com/users/BhaveshNank/repos?sort=updated&per_page=100&type=owner');
+        // Fetch repositories - use affiliation=owner,collaborator,organization_member to get ALL repos
+        const reposUrl = 'https://api.github.com/users/BhaveshNank/repos?per_page=100&affiliation=owner';
+        console.log('Fetching repos from:', reposUrl);
+        
+        const reposResponse = await fetch(reposUrl, {
+          headers: {
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        
+        console.log('API Response Status:', reposResponse.status);
         const reposData = await reposResponse.json();
-        // Filter out forks if needed and sort by stars
-        const filteredRepos = reposData.filter((repo: Repository) => !repo.fork);
-        setRepos(filteredRepos);
+        
+        console.log('Total repos fetched:', reposData.length);
+        console.log('All repo names:', reposData.map((r: Repository) => r.name));
+        console.log('Fork count:', reposData.filter((r: Repository) => r.fork).length);
+        console.log('Non-fork count:', reposData.filter((r: Repository) => !r.fork).length);
+        
+        // Show all repositories including forks
+        setRepos(reposData);
 
         setLoading(false);
       } catch (error) {
@@ -185,7 +200,7 @@ export default function GitHubProfile() {
 
         {/* Repositories */}
         <div>
-          <h2 className="text-xl font-bold text-white mb-4">Repositories ({user.public_repos})</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Repositories ({repos.length})</h2>
           <div className="grid gap-4">
             {repos.map((repo) => (
               <a
