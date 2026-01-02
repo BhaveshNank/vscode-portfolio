@@ -1,6 +1,11 @@
 <div align="center">
   <img src="public/vs-code-logo.png" width="80" height="80" />
   <h1>VS Code Portfolio Template</h1>
+  <p>
+    <a href="https://vscode-portfolio-rho.vercel.app" target="_blank">
+      <img src="https://img.shields.io/badge/Live%20Demo-Visit%20Portfolio-blue?style=for-the-badge&logo=vercel" alt="Live Demo" />
+    </a>
+  </p>
 </div>
 
 A stunning, fully functional Visual Studio Code replica built as a portfolio website. This template recreates the authentic VS Code experience with working features including file explorer, terminal, extensions marketplace, and theme switching.
