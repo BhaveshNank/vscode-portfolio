@@ -1,3 +1,18 @@
+// ============================================================================
+// 🔧 PROJECTS PAGE - SHOWCASE YOUR WORK
+// ============================================================================
+// This page displays your portfolio projects with descriptions and links.
+//
+// TO CUSTOMIZE:
+// 1. Replace the projects array below with YOUR projects
+// 2. Each project needs: name, tagline, description, tech, highlights, links
+// 3. Update GitHub username in the header
+// 4. Choose icon and color for each project
+//
+// Available icons: Database, Cloud, Code, Server, Globe, etc. (from lucide-react)
+// Available colors: 'blue', 'green', 'purple'
+// ============================================================================
+
 'use client';
 
 import { motion } from 'framer-motion';
@@ -7,24 +22,38 @@ import { useState } from 'react';
 export default function ProjectsContent() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
+  // ============================================================================
+  // 🔧 CUSTOMIZE: YOUR PROJECTS ARRAY
+  // ============================================================================
+  // Replace with your own projects. Each project should showcase:
+  // - What problem it solves
+  // - Technologies used
+  // - Key achievements/metrics
+  // - Links to demo and code
+  //
+  // 💡 TIP: Lead with your most impressive project
+  // 💡 TIP: Use specific metrics in highlights (e.g., "90% faster", "15+ endpoints")
+  // ============================================================================
   const projects = [
+    // 🔧 PROJECT 1: Replace with your most impressive project
     {
-      id: 1,
-      name: 'GrowAhead',
-      tagline: 'Micro-Investment Fintech Platform',
-      description: 'Full-stack fintech simulation platform with 3 investment strategy models (5%, 8%, 12% returns), featuring interactive dashboards using Recharts and precision financial algorithms calculating 1-10 year portfolio projections.',
-      tech: ['Next.js 15', 'TypeScript', 'Node.js', 'PostgreSQL', 'AWS Elastic Beanstalk', 'AWS RDS', 'Vercel'],
-      highlights: [
+      id: 1,                                                    // Keep incrementing
+      name: 'GrowAhead',                                        // 🔧 Project name
+      tagline: 'Micro-Investment Fintech Platform',             // 🔧 One-line description
+      description: 'Full-stack fintech simulation platform with 3 investment strategy models (5%, 8%, 12% returns), featuring interactive dashboards using Recharts and precision financial algorithms calculating 1-10 year portfolio projections.',  // 🔧 Detailed description (2-3 sentences)
+      tech: ['Next.js 15', 'TypeScript', 'Node.js', 'PostgreSQL', 'AWS Elastic Beanstalk', 'AWS RDS', 'Vercel'],  // 🔧 Tech stack
+      highlights: [                                             // 🔧 Key achievements (3-5 bullet points)
         'Secure RESTful API with 15+ endpoints',
         'JWT authentication & bcrypt hashing',
         'CI/CD pipeline with GitHub Actions',
         '51 Jest tests - 90% faster deployment'
       ],
-      icon: Database,
-      color: 'blue',
-      demoLink: 'https://growahead-beta.vercel.app',
-      githubLink: 'https://github.com/BhaveshNank/GrowAhead'
+      icon: Database,                                           // 🔧 Icon component (Database, Cloud, Code)
+      color: 'blue',                                           // 🔧 Color theme (blue, green, purple)
+      demoLink: 'https://growahead-beta.vercel.app',           // 🔧 Live demo link (or null)
+      githubLink: 'https://github.com/BhaveshNank/GrowAhead'  // 🔧 GitHub repository link
     },
+    // 🔧 PROJECT 2: Replace with your second project
     {
       id: 2,
       name: 'VisionTech',
@@ -42,6 +71,7 @@ export default function ProjectsContent() {
       demoLink: 'https://vision-tech-beta.vercel.app',
       githubLink: 'https://github.com/BhaveshNank/VisionTech'
     },
+    // 🔧 PROJECT 3: Replace with your third project
     {
       id: 3,
       name: 'JavaChatApp',
@@ -56,10 +86,12 @@ export default function ProjectsContent() {
       ],
       icon: Code,
       color: 'purple',
-      demoLink: null,
+      demoLink: null,                                         // 🔧 Set to null if no live demo
       githubLink: 'https://github.com/BhaveshNank/JavaChatApp'
     }
+    // 🔧 ADD MORE PROJECTS: Copy the structure above to add more projects
   ];
+  // ============================================================================
 
   const getColorClasses = (color: string) => {
     const colors = {
@@ -94,7 +126,7 @@ export default function ProjectsContent() {
           <div className="flex items-center gap-6 text-vscode-textMuted">
             <div className="flex items-center gap-2">
               <Github size={16} />
-              <span>github.com/BhaveshNank</span>
+              <span>github.com/BhaveshNank</span>  {/* 🔧 Your GitHub username */}
             </div>
             <span>•</span>
             <span>25+ repositories</span>

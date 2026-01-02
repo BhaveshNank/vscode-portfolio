@@ -1,3 +1,24 @@
+// ============================================================================
+// 🔧 GITHUB PROFILE INTEGRATION
+// ============================================================================
+// ⚠️ CRITICAL: You MUST change the GitHub username below!
+//
+// This component fetches real-time data from the GitHub API:
+// - Profile information (avatar, bio, follower count)
+// - Repository count and total stars
+// - Recent repositories
+//
+// API NOTES:
+// - Rate limit: 60 requests/hour (unauthenticated)
+// - For higher limits, add a GitHub Personal Access Token
+// - Ensure your GitHub profile is public
+//
+// TO CUSTOMIZE:
+// 1. Replace 'BhaveshNank' with YOUR GitHub username (line ~56 and ~61)
+// 2. Test that your profile loads correctly
+// 3. Consider adding a token for higher rate limits (optional)
+// ============================================================================
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -36,14 +57,19 @@ export default function GitHubProfile() {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
+        // ========================================================================
+        // 🔧 CUSTOMIZE: Replace 'BhaveshNank' with YOUR GitHub username
+        // ========================================================================
+        const GITHUB_USERNAME = 'BhaveshNank';  // ⚠️ CHANGE THIS!
+        
         // Fetch user data
-        const userResponse = await fetch('https://api.github.com/users/BhaveshNank');
+        const userResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
         const userData = await userResponse.json();
         console.log('User data fetched:', userData.login, 'public_repos:', userData.public_repos);
         setUser(userData);
 
-        // Fetch repositories - use affiliation=owner,collaborator,organization_member to get ALL repos
-        const reposUrl = 'https://api.github.com/users/BhaveshNank/repos?per_page=100&affiliation=owner';
+        // Fetch repositories - get owner repos only
+        const reposUrl = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&affiliation=owner`;
         console.log('Fetching repos from:', reposUrl);
         
         const reposResponse = await fetch(reposUrl, {

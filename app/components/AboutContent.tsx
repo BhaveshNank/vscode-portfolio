@@ -1,3 +1,16 @@
+// ============================================================================
+// 🔧 ABOUT PAGE - YOUR PROFESSIONAL STORY
+// ============================================================================
+// This page showcases your background, education, skills, and experience.
+// 
+// TO CUSTOMIZE:
+// 1. Update personal information in the Hero Section (name, title, bio)
+// 2. Modify techStack object with your technologies
+// 3. Update stats array with your achievements
+// 4. Replace profile picture in public folder (bhavesh.jpeg)
+// 5. Update education and work experience sections
+// ============================================================================
+
 'use client';
 
 import { motion } from 'framer-motion';
@@ -21,19 +34,27 @@ interface AboutContentProps {
 }
 
 export default function AboutContent({ onOpenFile }: AboutContentProps) {
+  // ============================================================================
+  // 🔧 CUSTOMIZE: YOUR TECHNICAL SKILLS
+  // ============================================================================
+  // Organize your skills by category for better presentation
   const techStack = {
-    languages: ['Python', 'Java', 'TypeScript', 'JavaScript', 'C/C++'],
-    frontend: ['React', 'Next.js 15', 'Tailwind CSS'],
-    backend: ['Node.js', 'Express', 'Flask', 'REST APIs'],
-    databases: ['PostgreSQL', 'MongoDB', 'MySQL'],
-    cloud: ['AWS', 'Azure DevOps', 'Vercel', 'GitHub Actions', 'Git']
+    languages: ['Python', 'Java', 'TypeScript', 'JavaScript', 'C/C++'],         // 🔧 Programming languages
+    frontend: ['React', 'Next.js 15', 'Tailwind CSS'],                         // 🔧 Frontend technologies
+    backend: ['Node.js', 'Express', 'Flask', 'REST APIs'],                     // 🔧 Backend technologies
+    databases: ['PostgreSQL', 'MongoDB', 'MySQL'],                             // 🔧 Databases you know
+    cloud: ['AWS', 'Azure DevOps', 'Vercel', 'GitHub Actions', 'Git']        // 🔧 Cloud & DevOps tools
   };
 
+  // ============================================================================
+  // 🔧 CUSTOMIZE: YOUR KEY STATS/ACHIEVEMENTS
+  // ============================================================================
+  // Highlight impressive numbers or achievements
   const stats = [
-    { label: 'First Class Honours', value: '🏆', color: 'blue' },
-    { label: 'Technologies', value: '15+', color: 'green' },
-    { label: 'Certifications', value: '3', color: 'cyan' },
-    { label: 'CI/CD Pipelines', value: '✓', color: 'magenta' }
+    { label: 'First Class Honours', value: '🏆', color: 'blue' },      // 🔧 Your top achievement
+    { label: 'Technologies', value: '15+', color: 'green' },           // 🔧 Number of technologies
+    { label: 'Certifications', value: '3', color: 'cyan' },            // 🔧 Certifications earned
+    { label: 'CI/CD Pipelines', value: '✓', color: 'magenta' }        // 🔧 Another achievement
   ];
 
   return (
@@ -49,20 +70,23 @@ export default function AboutContent({ onOpenFile }: AboutContentProps) {
           >
             {/* Avatar Placeholder */}
             <div className="relative">
+              {/* 🔧 CUSTOMIZE: Replace /bhavesh.jpeg with your photo in public folder */}
               <img 
-                src="/bhavesh.jpeg" 
-                alt="Bhavesh Nankani"
+                src="/bhavesh.jpeg"                    // 🔧 Your profile picture path
+                alt="Bhavesh Nankani"                  // 🔧 Your name for alt text
                 className="w-32 h-32 rounded-full object-cover shadow-xl border-4 border-vscode-border"
               />
             </div>
 
             {/* Header Info */}
             <div className="flex-1">
-              <h1 className="text-5xl font-bold text-white mb-4">Bhavesh Nankani</h1>
+              {/* 🔧 CUSTOMIZE: Your name, title, and introduction */}
+              <h1 className="text-5xl font-bold text-white mb-4">Bhavesh Nankani</h1>  {/* 🔧 Your name */}
               <p className="text-xl text-vscode-syntax-blue font-semibold mb-4">
-                Full-Stack Software Engineer
+                Full-Stack Software Engineer  {/* 🔧 Your professional title */}
               </p>
               <p className="text-lg text-vscode-text leading-relaxed mb-6">
+                {/* 🔧 Your professional introduction (2-3 sentences) */}
                 First Class Honours graduate passionate about building scalable web applications 
                 and solving complex technical challenges with elegant solutions.
               </p>
@@ -71,11 +95,11 @@ export default function AboutContent({ onOpenFile }: AboutContentProps) {
               <div className="flex flex-wrap gap-4 text-sm text-vscode-textMuted mb-6">
                 <div className="flex items-center gap-2">
                   <MapPin size={16} className="text-vscode-syntax-blue" />
-                  <span>London, UK</span>
+                  <span>London, UK</span>  {/* 🔧 Your location */}
                 </div>
                 <div className="flex items-center gap-2">
                   <GraduationCap size={16} className="text-vscode-syntax-green" />
-                  <span>University of Greenwich</span>
+                  <span>University of Greenwich</span>  {/* 🔧 Your university */}
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar size={16} className="text-vscode-syntax-cyan" />

@@ -1,3 +1,21 @@
+// ============================================================================
+// 🔧 TERMINAL COMPONENT - INTERACTIVE COMMAND LINE
+// ============================================================================
+// This terminal allows users to interact with your portfolio using commands.
+//
+// TO CUSTOMIZE:
+// 1. Update the welcome message with your name
+// 2. Modify the commands object to add/remove/change commands
+// 3. Update the skills command with your tech stack
+// 4. Add Easter eggs for fun (e.g., 'sudo hire', 'coffee', 'joke')
+//
+// BUILT-IN COMMANDS:
+// help, clear, about, projects, contact, skills, whoami, ls, pwd, date, 
+// echo, cat, exit, sudo
+//
+// 💡 TIP: Easter eggs impress technical recruiters!
+// ============================================================================
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -12,8 +30,9 @@ interface TerminalProps {
 }
 
 export default function Terminal({ onClose, onMinimize, onOpenFile, height, onResize }: TerminalProps) {
+  // 🔧 CUSTOMIZE: Welcome message with your name
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
-    'Welcome to Bhavesh\'s Portfolio Terminal! 💻',
+    'Welcome to Bhavesh\'s Portfolio Terminal! 💻',  // 🔧 Your name
     'Type "help" to see available commands',
     ''
   ]);
@@ -71,13 +90,30 @@ export default function Terminal({ onClose, onMinimize, onOpenFile, height, onRe
     e.preventDefault();
     const command = terminalInput.trim();
     const commandLower = command.toLowerCase();
-    const newOutput = [...terminalOutput, `bhaveshnankani@vscode-portfolio:~$ ${terminalInput}`];
+    // 🔧 CUSTOMIZE: Terminal prompt with your name/username
+    const newOutput = [...terminalOutput, `bhaveshnankani@vscode-portfolio:~$ ${terminalInput}`];  // 🔧 Your username
     
     if (command) {
       setCommandHistory([...commandHistory, terminalInput]);
       setHistoryIndex(-1);
     }
 
+    // ========================================================================
+    // 🔧 CUSTOMIZE: TERMINAL COMMANDS
+    // ========================================================================
+    // Each command is a function that adds output to the terminal
+    // 
+    // TO ADD A NEW COMMAND:
+    // 1. Add a new key-value pair to the commands object
+    // 2. The key is the command name users will type
+    // 3. The value is a function that pushes strings to newOutput array
+    // 
+    // EXAMPLE:
+    // coffee: () => {
+    //   newOutput.push('\u2615 Brewing coffee... Done!');
+    //   newOutput.push('Here you go! Enjoy your coffee.');
+    // },
+    // ========================================================================
     const commands: { [key: string]: () => void } = {
       help: () => {
         newOutput.push('');
@@ -118,18 +154,20 @@ export default function Terminal({ onClose, onMinimize, onOpenFile, height, onRe
         onOpenFile('contact.css', 'contact.css');
         newOutput.push('✓ Opening contact.css...');
       },
+      // 🔧 CUSTOMIZE: Update with YOUR skills
       skills: () => {
         newOutput.push('');
         newOutput.push('💡 Technical Skills:');
-        newOutput.push('  Frontend: React, Next.js 15, TypeScript, Tailwind CSS');
-        newOutput.push('  Backend: Node.js, Express, Python, Flask');
-        newOutput.push('  Database: PostgreSQL, MongoDB Atlas');
-        newOutput.push('  DevOps: AWS, Vercel, Render, Git, CI/CD');
+        newOutput.push('  Frontend: React, Next.js 15, TypeScript, Tailwind CSS');  // 🔧 Your frontend skills
+        newOutput.push('  Backend: Node.js, Express, Python, Flask');              // 🔧 Your backend skills
+        newOutput.push('  Database: PostgreSQL, MongoDB Atlas');                   // 🔧 Your databases
+        newOutput.push('  DevOps: AWS, Vercel, Render, Git, CI/CD');               // 🔧 Your DevOps tools
         newOutput.push('');
       },
+      // 🔧 CUSTOMIZE: Update with YOUR info
       whoami: () => {
         newOutput.push('');
-        newOutput.push('root user: Bhavesh Nankani (Full Stack Engineer & Coffee Consumer ☕️)');
+        newOutput.push('root user: Bhavesh Nankani (Full Stack Engineer & Coffee Consumer ☕️)');  // 🔧 Your name and title
         newOutput.push('');
       },
       ls: () => {
@@ -149,16 +187,24 @@ export default function Terminal({ onClose, onMinimize, onOpenFile, height, onRe
       cat: () => {
         newOutput.push('Meow? 🐈 (Did you mean \'cat contact.css\'?)');
       },
+      // 🎭 Easter egg command - fun response
       exit: () => {
         newOutput.push('There is no escape. You must hire me. 🔒');
       },
+      // 🔧 ADD YOUR CUSTOM COMMANDS HERE
+      // Example:
+      // coffee: () => {
+      //   newOutput.push('\u2615 Brewing coffee... *beep boop* Done!');
+      // },
+      // 🎭 Another Easter egg
       sudo: () => {
-        newOutput.push('[sudo] password for bhaveshnankani: ');
+        newOutput.push('[sudo] password for bhaveshnankani: ');  // 🔧 Your username
         setTimeout(() => {
           setTerminalOutput(prev => [...prev, 'Sorry, permission denied.', '']);
         }, 500);
       }
     };
+    // ========================================================================
 
     if (commandLower === 'clear') {
       setTerminalOutput([

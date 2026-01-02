@@ -1,3 +1,14 @@
+// ============================================================================
+// 🔧 CONTACT PAGE - YOUR CONTACT INFORMATION
+// ============================================================================
+// Make it easy for recruiters and collaborators to reach you!
+//
+// TO CUSTOMIZE:
+// 1. Update contactInfo array with YOUR contact details
+// 2. Modify the introduction text
+// 3. Ensure all links are working before deploying
+// ============================================================================
+
 'use client';
 
 import { motion } from 'framer-motion';
@@ -8,43 +19,50 @@ interface ContactContentProps {
 }
 
 export default function ContactContent({ onOpenFile }: ContactContentProps) {
+  // ============================================================================
+  // 🔧 CUSTOMIZE: YOUR CONTACT INFORMATION
+  // ============================================================================
+  // Update each field with your own contact details
+  // Set href to null if you don't want it to be clickable (e.g., Location)
+  // ============================================================================
   const contactInfo = [
     {
       icon: Mail,
       label: 'Email',
-      value: 'bhaveshnankani@outlook.com',
-      href: 'mailto:bhaveshnankani@outlook.com',
+      value: 'bhaveshnankani@outlook.com',              // 🔧 Your email address
+      href: 'mailto:bhaveshnankani@outlook.com',        // 🔧 Keep mailto: prefix
       color: 'text-vscode-syntax-red'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+44 7398 235749',
-      href: 'tel:+447398235749',
+      value: '+44 7398 235749',                         // 🔧 Your phone number
+      href: 'tel:+447398235749',                        // 🔧 Keep tel: prefix (no spaces)
       color: 'text-vscode-syntax-green'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      value: 'linkedin.com/in/bhavesh-nankani',
-      href: 'https://linkedin.com/in/bhavesh-nankani',
+      value: 'linkedin.com/in/bhavesh-nankani',         // 🔧 Your LinkedIn username
+      href: 'https://linkedin.com/in/bhavesh-nankani',  // 🔧 Full LinkedIn URL
       color: 'text-[#0077b5]'
     },
     {
       icon: Github,
       label: 'GitHub',
-      value: 'github.com/BhaveshNank',
-      href: 'https://github.com/BhaveshNank',
+      value: 'github.com/BhaveshNank',                  // 🔧 Your GitHub username
+      href: 'https://github.com/BhaveshNank',           // 🔧 Full GitHub URL
       color: 'text-vscode-syntax-magenta'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'London, United Kingdom',
-      href: null,
+      value: 'London, United Kingdom',                  // 🔧 Your location
+      href: null,                                       // Keep null (not clickable)
       color: 'text-vscode-syntax-yellow'
     }
   ];
+  // ============================================================================
 
   return (
     <div className="p-8 max-w-4xl bg-vscode-bg min-h-full">

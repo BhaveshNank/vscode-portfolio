@@ -1,7 +1,18 @@
+// ============================================================================
+// 🔧 HOME PAGE - LANDING PAGE CONTENT
+// ============================================================================
+// This is the first page visitors see - make it count!
+// The typewriter effect displays your profile information like code.
+//
+// TO CUSTOMIZE:
+// Update the engineerProfile object below with your information
+// ============================================================================
+
 'use client';
 
 import { useState, useEffect } from 'react';
 
+// Typewriter effect hook - controls the typing animation speed
 const useTypewriter = (text: string, speed = 20) => {
   const [displayText, setDisplayText] = useState('');
   
@@ -18,24 +29,29 @@ const useTypewriter = (text: string, speed = 20) => {
 };
 
 export default function HomeContent() {
+  // ============================================================================
+  // 🔧 CUSTOMIZE THIS OBJECT WITH YOUR INFORMATION
+  // ============================================================================
   const engineerProfile = {
-    name: "Bhavesh Nankani",
-    role: "Full-Stack Software Engineer",
+    name: "Bhavesh Nankani",                    // 🔧 Your full name
+    role: "Full-Stack Software Engineer",       // 🔧 Your professional title
     education: {
-      degree: "BEng Software Engineering",
-      honours: "First Class",
-      university: "University of Greenwich"
+      degree: "BEng Software Engineering",      // 🔧 Your degree
+      honours: "First Class",                   // 🔧 Your honors/GPA
+      university: "University of Greenwich"     // 🔧 Your university
     },
-    techStack: [
+    techStack: [                                // 🔧 Your main technologies (6-8 items)
       "Next.js 15 & React",
-      "TypeScript",
+      "JavaScript", "TypeScript",
+      "Node.js",
       "Python (Flask/AI)",
       "PostgreSQL & MongoDB",
       "AWS & Cloud Architecture"
     ],
-    location: "London, UK",
-    status: "Ready to Deploy 🚀"
+    location: "London, UK",                     // 🔧 Your location
+    status: "Ready to Deploy 🚀"               // 🔧 Your current status/tagline
   };
+  // ============================================================================
 
   const code = `const bhavesh = ${JSON.stringify(engineerProfile, null, 2)};
 
