@@ -1,13 +1,3 @@
-// ============================================================================
-// 🔧 HOME PAGE - LANDING PAGE CONTENT
-// ============================================================================
-// This is the first page visitors see - make it count!
-// The typewriter effect displays your profile information like code.
-//
-// TO CUSTOMIZE:
-// Update the engineerProfile object below with your information
-// ============================================================================
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -108,8 +98,9 @@ export default bhavesh;`;
             <span className="inline-block w-12 text-right pr-4 text-[#858585] select-none">
               {i + 1}
             </span>
+            {/* Added whitespace-pre class below to preserve indentation */}
             <span 
-              className="text-[#d4d4d4]"
+              className="text-[#d4d4d4] whitespace-pre"
               dangerouslySetInnerHTML={{ __html: highlightLine(line) }}
             />
           </div>
