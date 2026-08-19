@@ -16,7 +16,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Database, Cloud, Code } from 'lucide-react';
+import { ExternalLink, Github, Database, Cloud, Code, Monitor } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ProjectsContent() {
@@ -74,6 +74,24 @@ export default function ProjectsContent() {
     // 🔧 PROJECT 3: Replace with your third project
     {
       id: 3,
+      name: 'VS Code Portfolio',
+      tagline: 'Browser-Based IDE Portfolio',
+      description: 'A fully functional VS Code interface built as a personal portfolio, navigable file explorer, tabbed editor, integrated terminal, and 7-theme switcher. Professional content (about, projects, resume, GitHub) is presented as browsable code files within a realistic IDE replica.',
+      tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS v4', 'Framer Motion', 'GitHub API', 'Vercel'],
+      highlights: [
+        '7-theme CSS variable system with live switching',
+        'Framer Motion layoutId tab indicator',
+        'GitHub API integration for live profile data',
+        'Swipe gestures & mobile-responsive fallback'
+      ],
+      icon: Monitor,
+      color: 'orange',
+      demoLink: 'https://vscode-portfolio-rho.vercel.app',
+      githubLink: 'https://github.com/BhaveshNank/vscode-portfolio'
+    },
+    // 🔧 PROJECT 4: Replace with your fourth project
+    {
+      id: 4,
       name: 'JavaChatApp',
       tagline: 'Multi-threaded Java Chat Server',
       description: 'Built using core OOP principles with design patterns like MVC and Observer. Supports 20+ concurrent clients with comprehensive unit testing suite and CI/CD through Azure DevOps.',
@@ -89,6 +107,8 @@ export default function ProjectsContent() {
       demoLink: null,                                         // 🔧 Set to null if no live demo
       githubLink: 'https://github.com/BhaveshNank/JavaChatApp'
     }
+    
+
     // 🔧 ADD MORE PROJECTS: Copy the structure above to add more projects
   ];
   // ============================================================================
@@ -112,7 +132,16 @@ export default function ProjectsContent() {
         bg: 'bg-vscode-syntax-magenta/10',
         text: 'text-vscode-syntax-magenta',
         hover: 'hover:border-vscode-syntax-magenta'
-      }
+      },
+
+      orange: {
+        border: 'border-vscode-syntax-orange',
+        bg: 'bg-vscode-syntax-orange/10',
+        text: 'text-vscode-syntax-orange',
+        hover: 'hover:border-vscode-syntax-orange'
+      },
+
+
     };
     return colors[color as keyof typeof colors] || colors.blue;
   };
@@ -140,7 +169,7 @@ export default function ProjectsContent() {
           {projects.map((project) => {
             const Icon = project.icon;
             const colors = getColorClasses(project.color);
-            
+
             return (
               <motion.div
                 key={project.id}
@@ -151,8 +180,8 @@ export default function ProjectsContent() {
                 onMouseLeave={() => setHoveredProject(null)}
                 className={`
                   group relative p-6 rounded-lg border-2 transition-all duration-300
-                  ${hoveredProject === project.id 
-                    ? `${colors.border} ${colors.bg}` 
+                  ${hoveredProject === project.id
+                    ? `${colors.border} ${colors.bg}`
                     : 'border-vscode-border bg-vscode-sidebar'
                   }
                 `}
@@ -168,7 +197,7 @@ export default function ProjectsContent() {
                       <p className={`text-sm font-medium ${colors.text}`}>{project.tagline}</p>
                     </div>
                   </div>
-                  
+
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     {project.demoLink && (
